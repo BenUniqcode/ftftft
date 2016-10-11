@@ -69,11 +69,11 @@ footer {
 }
 .inputhtml, .outputhtml {
   width: 100%;
-  height: 30rem;
+  height: 50rem;
 }
 .preview {
   width: 100%;
-  height: 30rem;
+  height: 50rem;
   background-color: white;
   color: black;
   font-family: sans-serif;
