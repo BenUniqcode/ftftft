@@ -78,15 +78,25 @@ var generate = function(lang) {
     var replacement = $(this).find('input.replacement').val();
     var flags = $(this).find('input.flags').val();
     if (regex) {
+      // Literal slashes do not have to be escaped in the input fields (though they can be), but they do in any code generated
+      // XXX This won't cope with an even number of \ followed by a /
+      regex = regex.replace(/(^|[^\\])\//g, '$1\\/');
       if (lang == 'perl') {
+        // Unlike other languages, Perl needs to have all slashes escaped in its replacement too (because we are using s/// instead of eg s{}{}), because it's easier to escape slashes than bracket pairs. 
+        replacement = replacement.replace(/\//g, '\\/');
         code += 's/' + regex + '/' + replacement + '/' + flags + ';';
       } else if (lang == 'php') {
+        // PHP's replacement is in single quotes, so escape any single quotes within it
+        replacement = replacement.replace(/'/g, '\\\'');
         code += '$output = preg_replace(\'/' + regex + '/' + flags + '\', \'' + replacement + '\', $output);';
       } else if (lang == 'js') {
+        // JS's replacement is in single quotes, so escape any single quotes within it
+        replacement = replacement.replace(/'/g, '\\\'');
+        // JSify the regex
         var jsified_re = jsify(regex, flags);
         regex = jsified_re.regex;
         flags = jsified_re.flags;
-        code += 'str = str.replace(/' + regex + '/' + flags + ', ' + replacement + ');';
+        code += 'str = str.replace(/' + regex + '/' + flags + ', \'' + replacement + '\');';
       }
       code += "\n";
     }

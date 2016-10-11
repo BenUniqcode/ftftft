@@ -18,6 +18,9 @@
   <body>
     <div class="container-fluid">
       <h1><span id="maintitle">ftftft</span> <span id="subtitle"><span class="initial">f</span>udge <span class="initial">t</span>hese <span class="initial">f</span>iles <span class="initial">t</span>o <span class="initial">f</span>it <span class="initial">t</span>emplate - a live regex hacking tool</small></h1>
+      <p>
+        <b>Alpha</b> version. Bugs inevitable. Gentle feedback welcome: ben@uniqcode.com
+      </p>
       <div class="row">
         <div class="col-md-7">
           <div id="regexarea">
@@ -25,6 +28,9 @@
             <div id="regexbuttons">
               <button id="add_regex_row" class="btn btn-success btn-xs">+ Add</button>
             </div>
+            <p style="clear: left">
+              The standard Javascript regex engine is used, so you can only use the features it supports (no lookbehind, for example)<br>You <em>can</em> however use PCRE's <b>s</b> modifier flag which extends <b>.</b> to match any character including newlines.
+            </p>
             <table id="regexes">
               <thead>
                 <th>Regex</th>
@@ -70,7 +76,7 @@
         </div><!-- col-md-7 -->
         <div id="templatearea" class="col-md-5">
           <h3>Template HTML</h3>
-          <p>The transformed input HTML will be inserted to replace the string {insert} in this template to generate the preview.</p>
+          <p>The transformed input HTML will be inserted to replace the string <b>{insert}</b> in this template to generate the preview.</p>
           <textarea class="htmlcode" id="templatehtml" name="templatehtml">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
   &lt;body&gt;
