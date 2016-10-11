@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ftftft - fudge these files to fit template</title>
+    <!-- jQuery (must come first) -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Clipboard.js -->
+    <script src="clipboard.min.js"></script>
+    <!-- CSS and JS for this app -->
+    <link rel="stylesheet" href="ftftft.css">
+    <script src="ftftft.js"></script>
+
+  </head>
+  <body>
+    <div class="container-fluid">
+      <h1><span id="maintitle">ftftft</span> <span id="subtitle"><span class="initial">f</span>udge <span class="initial">t</span>hese <span class="initial">f</span>iles <span class="initial">t</span>o <span class="initial">f</span>it <span class="initial">t</span>emplate - a live regex hacking tool</small></h1>
+      <div class="row">
+        <div class="col-md-7">
+          <div id="regexarea">
+            <h3 style="float: left">Regexes</h3>
+            <div id="regexbuttons">
+              <button id="add_regex_row" class="btn btn-success btn-xs">+ Add</button>
+            </div>
+            <table id="regexes">
+              <thead>
+                <th>Regex</th>
+                <th>Replacement</th>
+                <th>Flags</th>
+              </thead>
+              <tbody>
+                <tr class="regexrow">
+                  <td class="regex">
+                    <input class="regex" type="text">
+                  </td>
+                  <td class="replacement">
+                    <input class="replacement" type="text">
+                  </td>
+                  <td class="flags">
+                    <input class="flags" type="text" value="gi">
+                  </td>
+                </tbody>
+              </tr>
+            </table>
+          </div><!-- regexarea -->
+          <button id="generatebtn" class="btn btn-primary btn-sm">Generate Code</button>
+          <div id="codearea">
+            <div id="generatetoolbar">
+              <div id="generatebuttons">
+                <button id="generate_perl" class="btn btn-primary btn-sm">Perl</button>
+                <button id="generate_js" class="btn btn-primary btn-sm">JS</button>
+                <button id="generate_php" class="btn btn-primary btn-sm">PHP</button>
+              </div>
+              <div id="clipboardbtnarea">
+                <button id="clipboardbtn" class="btn btn-primary btn-sm" data-clipboard-target="#codeoutput"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span><span class="sr-only">Copy to clipboard</span></button>
+                <div id="clipboardsuccess">
+                  <span class="glyphicon glyphicon-ok"></span><span class="sr-only">Success</span>
+                </div>
+                <div id="clipboardfailure">
+                  <span class="glyphicon glyphicon-remove"></span> Copy to clipboard failed. Please do it manually.
+                </div>
+              </div>
+              <div style="clear:both"></div>
+            </div>
+            <textarea id="codeoutput" name="codeoutput"></textarea>
+          </div>
+        </div><!-- col-md-7 -->
+        <div id="templatearea" class="col-md-5">
+          <h3>Template HTML</h3>
+          <p>The transformed input HTML will be inserted to replace the string {insert} in this template to generate the preview.</p>
+          <textarea class="htmlcode" id="templatehtml" name="templatehtml">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Test&lt;/h1&gt;
+    &lt;p&gt;
+      {insert}
+    &lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</textarea>
+        </div>
+      </div>
+      <div id="documents">
+        <div class="row documentrow">
+          <div class="inputarea col-md-3">
+            <h3>Input HTML</h3>
+            <textarea class="inputhtml htmlcode" id="inputhtml1" name="inputhtml1"></textarea>
+          </div>
+          <div class="outputarea col-md-3">
+            <h3>Output HTML</h3>
+            <textarea class="outputhtml htmlcode" id="outputhtml1" name="outputhtml1"></textarea>
+          </div>
+          <div class="previewarea col-md-6">
+            <h3>Preview</h3>
+            <iframe class="preview" id="preview1"></iframe>
+          </div>
+        </div>
+      </div>
+      <div id="adddocbuttons">
+        <button id="add_document_row" class="btn btn-success btn-md">+ Add</button>
+      </div>
+    </div>
+    <footer>
+      <div class="author pull-right">
+        Created by Ben Wheeler &lt;ben@uniqcode.com&gt;
+      </div>
+    </footer>
+  </body>
+</html>
