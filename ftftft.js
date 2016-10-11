@@ -1,5 +1,7 @@
 "use strict";
 
+var current_language;
+
 // JS does not support the /s flag which allows . to match newlines. Instead we have to use [\s\S] and strip out the 's' flag.
 var jsify = function(regex, flags) {
   console.log("Called jsify");
@@ -90,6 +92,7 @@ var generate = function(lang) {
     }
   });
   $('#codeoutput').val(code);
+  current_language = lang;
 };
 
 $(function() {
@@ -126,11 +129,22 @@ $(function() {
     $('#clipboardfailure').show();
   });
 
-  var delay;
+  var delay_preview, delay_generate;
   $('body').on('input', '.regexrow input, textarea.inputhtml, textarea#templatehtml', function() {
-    clearTimeout(delay);
-    delay = setTimeout(update_previews, 300);
+    clearTimeout(delay_preview);
+    delay_preview = setTimeout(update_previews, 300);
   });
+  // When regexes are changed, live-update the currently selected language
+  $('body').on('input', '.regexrow input', function() {
+    if (current_language) {
+      clearTimeout(delay_generate);
+      delay_generate = setTimeout(function() {
+        generate(current_language);
+      }, 100);
+    }
+  });
+
+  // Do initial update in case inputs have been restored across reloads
   update_previews();
 });
 
