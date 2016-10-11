@@ -6,7 +6,7 @@ var jsify = function(regex, flags) {
   var newflags;
   if ((newflags = flags.replace('s', '')) != flags) {
     flags = newflags;
-    regex = regex.replace(/(^|[^\\])\./g, '$1[\S\s]'); // XXX This regex is incomplete - it will incorrectly match and convert an unescaped . inside a character class. I've been unable to figure out a way around this due to JS's lacklustre implementation of RE (no lookbehind). Suggested improvements welcome.
+    regex = regex.replace(/(^|[^\\])\./g, '$1[\\S\\s]'); // XXX This regex is incomplete - it will incorrectly match and convert an unescaped . inside a character class. I've been unable to figure out a way around this due to JS's lacklustre implementation of RE (no lookbehind). Suggested improvements welcome.
     console.log("Handled /s flag for JS - new regex is /" + regex + "/");
   }
   return { 'flags': flags, 'regex': regex};
