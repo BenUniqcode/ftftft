@@ -7,3 +7,5 @@ Yes, I know that regex is not really the "right" tool to transform HTML, but it'
 
 This software is Alpha. Bugs are inevitable. Gentle feedback welcome.
 
+You can try this out without installing it for yourself at http://uniqcode.com/ftftft/
+
